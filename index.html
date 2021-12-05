@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="JS.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        fname:<input id="fname" type="text" value="zobair"><br>
+        lname:<input id="lname" type="text" value="soodi"><br>
+        tel: <input id="tel" type="text" value="546546"><br>
+        <input id="sub_btn" value="Submit" type="submit">
+        <input id="apply_btn" value="Apply Edit" type="button">
+        <input id="cancel_btn" value="Cancel Edit" type="button"><br><br>
+    </form>
+    <table border="1" width="30%">
+        <thead>
+            <td>fname</td>
+            <td>lname</td>
+            <td>tel</td>
+            <td>edit</td>
+        </thead>
+        <tbody id="tbl_body">
+
+        </tbody>
+    </table>
+    <script>
+        const form_el = document.getElementsByTagName("form")[0];
+        const tbody_el = document.getElementById("tbl_body");
+        var submit_btn = document.getElementById("sub_btn");
+        var apply_btn = document.getElementById("apply_btn")
+        var cancel_btn = document.getElementById("cancel_btn")
+        var fname = document.getElementById("fname");
+        var lname = document.getElementById("lname");
+        var tel = document.getElementById("tel");
+        var edit_btn;
+
+        function add_row(e){
+            e.preventDefault();
+            tbody_el.innerHTML+=`
+                                <tr> 
+                                    <td>${fname.value}</td>
+                                    <td>${lname.value}</td> 
+                                    <td>${tel.value}</td>
+                                    <td><input type="button" class="dlt_btn" value="Delete">
+                                    <input type="button" class="edit_btn" value="Edit"></td>
+                                </tr>
+                                `;
+        }
+        function delete_row(e){
+            var dlt_btn = e.target;
+            if(dlt_btn.classList.contains("dlt_btn")){
+                dlt_btn.closest("tr").remove();
+            }
+        }
+        function edit_row(event){
+            edit_btn = event.target;
+            if(edit_btn.classList.contains("edit_btn")){
+                apply_btn.removeAttribute("disabled");
+                cancel_btn.removeAttribute("disabled");
+                row = edit_btn.closest("tr")
+                fname.value = row.getElementsByTagName("td")[0].innerHTML;
+                lname.value = row.getElementsByTagName("td")[1].innerHTML;
+                tel.value = row.getElementsByTagName("td")[2].innerHTML;
+                submit_btn.setAttribute("disabled","true");
+            }
+        }
+        function cancel_edit(){
+            submit_btn.removeAttribute("disabled");
+            apply_btn.setAttribute("disabled","true");
+            cancel_btn.setAttribute("disabled","true");
+            fname.value=""
+            lname.value=""
+            tel.value=""
+        }
+        function apply_edit(){
+            row = edit_btn.closest("tr");
+            row.getElementsByTagName("td")[0].innerHTML = fname.value;
+            row.getElementsByTagName("td")[1].innerHTML = lname.value;
+            row.getElementsByTagName("td")[2].innerHTML = tel.value;
+            
+            apply_btn.setAttribute("disabled","true");
+            cancel_btn.setAttribute("disabled","true");
+            submit_btn.removeAttribute("disabled");
+
+            fname.value=""
+            lname.value=""
+            tel.value=""
+        }
+
+        form_el.addEventListener('submit', add_row);
+        tbody_el.addEventListener('click', delete_row);
+        tbody_el.addEventListener('click', edit_row);
+        cancel_btn.addEventListener('click', cancel_edit);
+        apply_btn.addEventListener('click', apply_edit);
+
+        apply_btn.setAttribute("disabled","true");
+        cancel_btn.setAttribute("disabled","true");
+
+    </script>
+</body>
+</html>
