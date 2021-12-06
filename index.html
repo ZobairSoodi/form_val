@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label id="title_div">
+            Title:<input id="title" type="text">
+            <p id="title_par"></p>
+        </label>
+        
+        <label id="author_div">
+            Author:<input id="author" type="text">
+            <p id="author_par"></p>
+        </label>
+
+        <label id="price_div">
+            Price:<input id="price" type="text">
+            <p id="price_par"></p>
+        </label>
+        
+        <label id="pub_div">
+            Publication Date:<input id="pub" type="date">
+            <p id="pub_par"></p>
+        </label>
+        
+        <label id="lang_div">
+            Language:
+            <select value="type" id="lang">
+                <option value="ar">Arabic</option>
+                <option value="en">English</option>
+                <option value="fr">French</option>
+            </select>
+            <p id="lang_par"></p>
+        </label>
+        
+        <div id="type_div">
+            Type:
+            <fieldset>
+                <label><input class="type" type="radio" value="roman" name="type">Roman</label>
+                <label><input class="type" type="radio" value="essay" name="type">Essay</label>
+                <label><input class="type" type="radio" value="comic" name="type">comic book</label>
+            </fieldset>
+            <p id="type_par"></p>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        var form_el = document.getElementsByTagName("form")[0];
+        var form_inputs = document.getElementsByTagName("input");
+        var title = document.getElementById("title");
+        var author = document.getElementById("author");
+        var price = document.getElementById("price");
+        var pub = document.getElementById("pub");
+        var lang = document.getElementById("lang");
+        var type = document.getElementById("type");
+        var max_length = 3;
+
+        function validate(e){
+            e.preventDefault();
+            for(var i=0;i<form_inputs.length;i++){
+                if(form_inputs[i].value == ""){
+                    form_inputs[i].nextElementSibling.innerHTML = "nope";
+                }
+            }
+            if(title.value.length>max_length){
+                title.nextElementSibling.innerHTML = "max 3"
+            }
+            if(author.value.length>max_length){
+                author.nextElementSibling.innerHTML = "max 3"
+            }
+            
+        }
+
+        form_el.addEventListener("submit", validate)
+    </script>
+</body>
+</html>

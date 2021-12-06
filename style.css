@@ -1,0 +1,43 @@
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+}
+form label{
+    height: 90px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+form input,select,fieldset{
+    width: 400px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+fieldset{
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+form input[type="submit"]{
+    width: 100px;
+    margin-top: 50px;
+}
+form p{
+    margin: 0;
+    position: absolute;
+    bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: rgb(211, 11, 11);
+}
+.type{width: 20px;
+    font-size: 15px;
+    text-align: center;
+}
