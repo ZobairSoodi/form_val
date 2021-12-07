@@ -32,6 +32,7 @@
         <label id="lang_div">
             Language:
             <select value="type" id="lang">
+                <option disabled selected hidden value>-- Select a language --</option>
                 <option value="ar">Arabic</option>
                 <option value="en">English</option>
                 <option value="fr">French</option>
@@ -67,32 +68,60 @@
 
         function validate(e){
             e.preventDefault();
+
+            //basic check
             for(var i=0;i<form_inputs.length-4;i++){
                 if(form_inputs[i].value == ""){
+                    form_inputs[i].style.borderColor = "red"
                     form_inputs[i].nextElementSibling.style.color = "red";
                     form_inputs[i].nextElementSibling.innerHTML = "please fill this field";
                 }
                 else{
+                    form_inputs[i].style.borderColor = "green"
                     form_inputs[i].nextElementSibling.style.color = "green";
                     form_inputs[i].nextElementSibling.innerHTML = "ok!";
                 }
             }
+
+            //title check
             if(title.value.length>max_length){
+                title.style.borderColor = "red"
                 title.nextElementSibling.innerHTML = "max "+max_length;
                 title.nextElementSibling.style.color = "red";
             }
+
+            //author check
             if(author.value.length>max_length){
+                author.style.borderColor = "red"
                 author.nextElementSibling.innerHTML = "max "+max_length;
                 author.nextElementSibling.style.color = "red";
             }
+
+            //price check
             if(isNaN(price.value)){
+                price.style.borderColor = "red"
                 price.nextElementSibling.innerHTML = "numbers only";
                 price.nextElementSibling.style.color = "red";
             }
             else if(price.value<=0 && price.value != ""){
+                price.style.borderColor = "red"
                 price.nextElementSibling.innerHTML = "positive numbers only";
                 price.nextElementSibling.style.color = "red";
             }
+
+            //language check
+            if(lang.value == ""){
+                lang.style.borderColor = "red"
+                lang.nextElementSibling.style.color = "red";
+                lang.nextElementSibling.innerHTML = "please choose a language"
+            }
+            else{
+                lang.style.borderColor = "green"
+                lang.nextElementSibling.style.color = "green";
+                lang.nextElementSibling.innerHTML = "ok!"
+            }
+
+            //type check
             for(var i=0;i<type.length;i++){
                 if(type[i].checked){
                     is_checked = true;

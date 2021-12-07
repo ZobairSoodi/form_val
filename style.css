@@ -18,6 +18,10 @@ form input,select,fieldset{
     height: 30px;
     font-size: 20px;
     text-align: center;
+    outline: none;
+    box-sizing: border-box;
+    border: 1.5px solid;
+    border-radius: 5px;    
 }
 fieldset{
     border: none;
@@ -45,4 +49,7 @@ form p{
 .type{width: 20px;
     font-size: 15px;
     text-align: center;
+}
+select, option{
+    text-align-last:center;
 }
