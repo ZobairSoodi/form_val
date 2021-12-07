@@ -39,8 +39,8 @@
             <p id="lang_par"></p>
         </label>
         
-        <div id="type_div">
-            Type:
+        <div id="type_div" style="position: relative;">
+            <span style="text-align: center;font-size: 20px;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Type: </span>
             <fieldset>
                 <label><input class="type" type="radio" value="roman" name="type">Roman</label>
                 <label><input class="type" type="radio" value="essay" name="type">Essay</label>
@@ -60,23 +60,56 @@
         var price = document.getElementById("price");
         var pub = document.getElementById("pub");
         var lang = document.getElementById("lang");
-        var type = document.getElementById("type");
+        var type = document.getElementsByClassName("type");
+        var type_par = document.getElementById("type_par");
         var max_length = 3;
+        var is_checked = false;
 
         function validate(e){
             e.preventDefault();
-            for(var i=0;i<form_inputs.length;i++){
+            for(var i=0;i<form_inputs.length-4;i++){
                 if(form_inputs[i].value == ""){
-                    form_inputs[i].nextElementSibling.innerHTML = "nope";
+                    form_inputs[i].nextElementSibling.style.color = "red";
+                    form_inputs[i].nextElementSibling.innerHTML = "please fill this field";
+                }
+                else{
+                    form_inputs[i].nextElementSibling.style.color = "green";
+                    form_inputs[i].nextElementSibling.innerHTML = "ok!";
                 }
             }
             if(title.value.length>max_length){
-                title.nextElementSibling.innerHTML = "max 3"
+                title.nextElementSibling.innerHTML = "max "+max_length;
+                title.nextElementSibling.style.color = "red";
             }
             if(author.value.length>max_length){
-                author.nextElementSibling.innerHTML = "max 3"
+                author.nextElementSibling.innerHTML = "max "+max_length;
+                author.nextElementSibling.style.color = "red";
             }
-            
+            if(isNaN(price.value)){
+                price.nextElementSibling.innerHTML = "numbers only";
+                price.nextElementSibling.style.color = "red";
+            }
+            else if(price.value<=0 && price.value != ""){
+                price.nextElementSibling.innerHTML = "positive numbers only";
+                price.nextElementSibling.style.color = "red";
+            }
+            for(var i=0;i<type.length;i++){
+                if(type[i].checked){
+                    is_checked = true;
+                    break;
+                }
+                else{
+                    is_checked = false;
+                }
+            }
+            if(is_checked){
+                type_par.innerHTML = "ok!";
+                type_par.style.color = "green";
+            }
+            else{
+                type_par.innerHTML = "please select a type!";
+                type_par.style.color = "red";
+            }
         }
 
         form_el.addEventListener("submit", validate)

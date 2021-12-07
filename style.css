@@ -24,6 +24,11 @@ fieldset{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: relative;
+    height: 80px;
+}
+#type_div p{
+    margin-left: 140px;
 }
 form input[type="submit"]{
     width: 100px;
