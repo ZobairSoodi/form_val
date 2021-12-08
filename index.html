@@ -33,9 +33,9 @@
             Language:
             <select value="type" id="lang">
                 <option disabled selected hidden value>-- Select a language --</option>
-                <option value="ar">Arabic</option>
-                <option value="en">English</option>
-                <option value="fr">French</option>
+                <option value="Arabic">Arabic</option>
+                <option value="English">English</option>
+                <option value="French">French</option>
             </select>
             <p id="lang_par"></p>
         </label>
@@ -53,6 +53,18 @@
         <input type="submit" value="Submit">
     </form>
 
+    <table border="1" id="table">
+        <tr>
+            <td>Title</td>
+            <td>Author</td>
+            <td>Price</td>
+            <td>Publication Date</td>
+            <td>Language</td>
+            <td>Type</td>
+            <td>Controls</td>
+        </tr>
+    </table>
+
     <script>
         var form_el = document.getElementsByTagName("form")[0];
         var form_inputs = document.getElementsByTagName("input");
@@ -65,13 +77,17 @@
         var type_par = document.getElementById("type_par");
         var max_length = 3;
         var is_checked = false;
+        var table = document.getElementById("table");
+        
 
         function validate(e){
             e.preventDefault();
+            var form_not_valid = 0;
 
             //basic check
             for(var i=0;i<form_inputs.length-4;i++){
                 if(form_inputs[i].value == ""){
+                    form_not_valid++;
                     form_inputs[i].style.borderColor = "red"
                     form_inputs[i].nextElementSibling.style.color = "red";
                     form_inputs[i].nextElementSibling.innerHTML = "please fill this field";
@@ -85,6 +101,7 @@
 
             //title check
             if(title.value.length>max_length){
+                form_not_valid++;
                 title.style.borderColor = "red"
                 title.nextElementSibling.innerHTML = "max "+max_length;
                 title.nextElementSibling.style.color = "red";
@@ -92,6 +109,7 @@
 
             //author check
             if(author.value.length>max_length){
+                form_not_valid++;
                 author.style.borderColor = "red"
                 author.nextElementSibling.innerHTML = "max "+max_length;
                 author.nextElementSibling.style.color = "red";
@@ -99,26 +117,29 @@
 
             //price check
             if(isNaN(price.value)){
+                form_not_valid++;
                 price.style.borderColor = "red"
                 price.nextElementSibling.innerHTML = "numbers only";
                 price.nextElementSibling.style.color = "red";
             }
             else if(price.value<=0 && price.value != ""){
                 price.style.borderColor = "red"
+                form_not_valid++;
                 price.nextElementSibling.innerHTML = "positive numbers only";
                 price.nextElementSibling.style.color = "red";
             }
 
             //language check
             if(lang.value == ""){
-                lang.style.borderColor = "red"
+                form_not_valid++;
+                lang.style.borderColor = "red";
                 lang.nextElementSibling.style.color = "red";
-                lang.nextElementSibling.innerHTML = "please choose a language"
+                lang.nextElementSibling.innerHTML = "please choose a language";
             }
             else{
-                lang.style.borderColor = "green"
+                lang.style.borderColor = "green";
                 lang.nextElementSibling.style.color = "green";
-                lang.nextElementSibling.innerHTML = "ok!"
+                lang.nextElementSibling.innerHTML = "ok!";
             }
 
             //type check
@@ -136,11 +157,29 @@
                 type_par.style.color = "green";
             }
             else{
+                form_not_valid++;
                 type_par.innerHTML = "please select a type!";
                 type_par.style.color = "red";
             }
-        }
 
+            //insert row
+            if(form_not_valid==0){
+                var row = table.insertRow(-1);
+                row.insertCell(0).innerHTML = title.value;
+                row.insertCell(1).innerHTML = author.value;
+                row.insertCell(2).innerHTML = price.value;
+                row.insertCell(3).innerHTML = pub.value;
+                row.insertCell(4).innerHTML = lang.options[lang.selectedIndex].value;
+                var temp_cell="";
+                for(var i=0;i<type.length;i++){
+                    if(type[i].checked){
+                        temp_cell = type[0].value;
+                    }
+                }
+                row.insertCell(5).innerHTML = temp_cell;
+            }
+        }
+        
         form_el.addEventListener("submit", validate)
     </script>
 </body>
