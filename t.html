@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    First Name: <input id="fname" type="text"><br>
+    Last Name: <input id="lname" type="text"><br>
+    Tel: <input id="tel" type="number"><br>
+    Date: <input id="date" type="date"><br>
+    <input type="button" id="btn">
+
+    <table id="table" border="1">
+        <tr>
+            <td>first name </td>
+            <td>last name </td>
+            <td>tel</td>
+            <td>date</td>
+        </tr>
+    </table>
+
+    <script>
+        var fname = document.getElementById("fname");
+        var lname = document.getElementById("lname");
+        var tel = document.getElementById("tel");
+        var date = document.getElementById("date");
+        var table = document.getElementById("table");
+
+        document.getElementById("btn").addEventListener("click", function(){
+            var row = table.insertRow(-1);
+            row.insertCell(0).innerHTML = fname.value;
+            row.insertCell(1).innerHTML = lname.value;
+            row.insertCell(2).innerHTML = tel.value;
+            row.insertCell(3).innerHTML = date.value;
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // var fname = document.getElementById("fname");
+        // var lname = document.getElementById("lname");
+        // var tel = document.getElementById("tel");
+        // var date = document.getElementById("date");
+        // var table = document.getElementById("table");
+        // document.getElementById("btn").addEventListener("click", function(){
+        //     var row = table.insertRow(-1);
+        //     row.insertCell(0).innerHTML = fname.value;
+        //     row.insertCell(1).innerHTML = lname.value;
+        //     row.insertCell(2).innerHTML = tel.value;
+        //     row.insertCell(3).innerHTML = date.value;
+        // });
+    </script>
+</body>
+</html>
