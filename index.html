@@ -75,7 +75,7 @@
         var lang = document.getElementById("lang");
         var type = document.getElementsByClassName("type");
         var type_par = document.getElementById("type_par");
-        var max_length = 3;
+        var max_length = 30;
         var is_checked = false;
         var table = document.getElementById("table");
         
@@ -240,7 +240,6 @@
                 r.value = "Edit";
                 document.getElementById("submit_btn").removeAttribute("disabled")
             }
-
         }
         
         form_el.addEventListener("submit", validate)
