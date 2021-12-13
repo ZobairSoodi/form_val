@@ -1,9 +1,17 @@
+body{
+    background-image: url(library-book-shelf-seamless-background-vector-21309120.jpg);
+}
 form{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     width: 35%;
     float: left;
+    box-sizing: border-box;
+    padding: 50px;
+    background-color: rgba(173, 216, 230, 0.835);
+    border-radius: 30px;
+    margin-right: 65px;
 }
 form label{
     height: 90px;
@@ -56,9 +64,18 @@ select, option{
 }
 
 table{
-    width: 65%;
+    width: 55%;
+    font-size: 20px;
+    color: rgb(214, 223, 226);
+    box-sizing: border-box;
+    border: 4px solid black;
 }
 table td{
     width: 7.14%;
     text-align: center;
+    position: relative;
+}
+table tr{
+    box-sizing: border-box;
+    border: 4px solid black;
 }
