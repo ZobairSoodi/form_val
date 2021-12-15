@@ -171,14 +171,17 @@
 
             //insert row
             if (form_not_valid == 0) {
-                var row = table.insertRow(-1);
+                var row = table.insertRow();
                 row.insertCell(0).innerHTML = title.value;
                 row.insertCell(1).innerHTML = author.value;
                 row.insertCell(2).innerHTML = price.value;
                 row.insertCell(3).innerHTML = pub.value;
-                row.insertCell(4).innerHTML = lang.options[lang.selectedIndex].value;
+                var index = lang.selectedIndex;
+                row.insertCell(4).innerHTML = lang.options[index].value;
                 row.insertCell(5).innerHTML = "<input class='edit_btn' onclick='edit_row(this)' type='button' value='Edit'>" +
                     "<input class='dlt_btn' onclick='dlt_row(this)' type='button' value='Delete'>";
+                
+                //type
                 var temp_cell = "";
                 for (var i = 0; i < type.length; i++) {
                     if (type[i].checked) {
