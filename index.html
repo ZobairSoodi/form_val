@@ -21,6 +21,11 @@
             <p id="author_par"></p>
         </label>
 
+        <label id="email_div">
+            Email:<input id="email_author" type="text">
+            <p id="email_par"></p>
+        </label>
+
         <label id="price_div">
             Price:<input id="price" type="text">
             <p id="price_par"></p>
@@ -74,6 +79,7 @@
         var form_inputs = document.getElementsByTagName("input");
         var title = document.getElementById("title");
         var author = document.getElementById("author");
+        var email_author = document.getElementById("email_author");
         var price = document.getElementById("price");
         var pub = document.getElementById("pub");
         var lang = document.getElementById("lang");
@@ -119,17 +125,37 @@
                 author.nextElementSibling.style.color = "red";
             }
 
-            //price check
-            if (isNaN(price.value)) {
+            //Email check
+            var email_check = /\w+@gmail\.com/;
+            var email_check2 = /\s/;
+            if(!email_check.test(email_author.value) && email_author.value!=""){
+                if(email_check2.test(email_author.value)){
+                    
+                }
                 form_not_valid++;
-                price.style.borderColor = "red"
+                email_author.style.borderColor = "red";
+                email_author.nextElementSibling.innerHTML = "Invalid email format";
+                email_author.nextElementSibling.style.color = "red";
+            }
+            else{
+                email_author.style.borderColor = "green";
+                email_author.nextElementSibling.style.color = "green";
+                email_author.nextElementSibling.innerHTML = "ok!";
+            }
+
+            //price check
+            var price_check1 = /[a-zA-Z]/;
+            var price_check2 = /^[0-9]+\.[0-9]{2}$/;
+            if (price_check1.test(price.value)) {
+                form_not_valid++;
+                price.style.borderColor = "red";
                 price.nextElementSibling.innerHTML = "numbers only";
                 price.nextElementSibling.style.color = "red";
             }
-            else if (price.value <= 0 && price.value != "") {
-                price.style.borderColor = "red"
+            else if (!price_check2.test(price.value)) {
+                price.style.borderColor = "red";
                 form_not_valid++;
-                price.nextElementSibling.innerHTML = "positive numbers only";
+                price.nextElementSibling.innerHTML = "invalid price format";
                 price.nextElementSibling.style.color = "red";
             }
 
