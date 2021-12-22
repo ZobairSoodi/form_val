@@ -89,6 +89,11 @@
         var is_checked = false;
         var table = document.getElementById("table");
 
+        class Books{
+            constructor(title, author, email_author, price, pud_date,){
+
+            }
+        }
 
         function validate(e) {
             e.preventDefault();
@@ -120,7 +125,7 @@
             //author check
             if (author.value.length > max_length) {
                 form_not_valid++;
-                author.style.borderColor = "red"
+                author.style.borderColor = "red";
                 author.nextElementSibling.innerHTML = "max " + max_length;
                 author.nextElementSibling.style.color = "red";
             }
